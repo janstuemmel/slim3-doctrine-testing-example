@@ -1,0 +1,22 @@
+{
+  "require": {
+    "slim/slim": "^3.5",
+    "doctrine/orm": "^2.5"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.8",
+    "there4/slim-test-helpers": "^2.1"
+  },
+  "autoload": {
+    "psr-0": {
+      "": "src/"
+    }
+  },
+  "scripts": {
+    "serve": "php -S 0.0.0.0:8080 -t public public/index.php",
+    "test": "phpunit",
+    "db:create": "vendor/bin/doctrine orm:schema-tool:create",
+    "db:drop": "vendor/bin/doctrine orm:schema-tool:drop --force",
+    "db:update": "vendor/bin/doctrine orm:schema-tool:update --force"
+  }
+}
