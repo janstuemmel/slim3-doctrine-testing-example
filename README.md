@@ -1,10 +1,12 @@
+[![Build Status](https://travis-ci.org/janstuemmel/slim3-doctrine-testing-example.svg?branch=master)](https://travis-ci.org/janstuemmel/slim3-doctrine-testing-example)
+
 # Slim3-Doctrine Testing
 
 Testing example for a slim3-doctrine setup with in-memory sqlite database.
 
 ## Requirements
 
-* php
+* php >= 5.5
 * sqlite
 
 ## Packages
