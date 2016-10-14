@@ -59,6 +59,20 @@ class PostTest extends \TestCase {
   }
 
 
+  public function testApiPostNotFound() {
+
+    // given
+    $this->client->get('/api/posts/1');
+
+    // when
+    $data = json_decode($this->client->response->getBody(), $toArray = true);
+
+    // then
+    $this->assertEquals(404, $this->client->response->getStatusCode());
+    $this->assertArraySubset([ 'err' => true ], $data);
+  }
+
+
   public function testApiGetAllPosts() {
 
     // given

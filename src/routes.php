@@ -56,10 +56,15 @@ $app->post('/api/posts', function($req, $res, $args) {
     return $res->withJson([ 'err' => true, 'msg' => 'title already exists' ], 500);
 
   // other exceptions
+  // @codeCoverageIgnoreStart
   } catch (\Exception $e) {
 
-    return $res->withJson([ 'err' => true, 'msg' => 'other error' ], 500);
+    return $res->withJson([
+      'err' => true,
+      'msg' => 'Error, Message: ' . $e->getMessage()
+    ], 500);
   }
+  // @codeCoverageIgnoreEnd
 
   return $res->withJson([
     'title' => $newPost->getTitle(),
