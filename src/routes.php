@@ -5,7 +5,10 @@ use \Model\Post;
 use \Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
 $app->get('/', function($req, $res, $args) {
-  return 'Hello World!';
+
+  $contents = file_get_contents(__DIR__ . '/../templates/index.html');
+
+  return $contents;
 });
 
 $app->get('/api/posts/{id:[0-9]+}', function($req, $res, $args) {

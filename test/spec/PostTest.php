@@ -33,14 +33,11 @@ class PostTest extends \TestCase {
 
   public function testApiRoot() {
 
-    // given
+    // when
     $this->client->get('/');
 
-    // when
-    $body = $this->client->response->getBody();
-
     // then
-    $this->assertEquals('Hello World!', $body);
+    $this->assertEquals(200, $this->client->response->getStatusCode());
   }
 
 

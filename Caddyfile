@@ -1,0 +1,16 @@
+localhost:2020
+
+# ref: https://github.com/mholt/caddy/wiki/Troubleshooting-PHP-FPM-and-FastCGI
+# maybe enable fastcgi via ...
+# startup php-cgi -b 127.0.0.1:9000
+
+fastcgi / 127.0.0.1:9000 php
+
+errors
+log stdout
+
+root ./public
+
+rewrite / {
+    to {path} {path}/ /index.php?{query}
+}
