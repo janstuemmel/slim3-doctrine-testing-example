@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  app:
+    build: .
+    environment:
+      - APP_DB_DRIVER=pdo_mysql
+      - APP_DB_HOST=db
+      - APP_DB_USER=app
+      - APP_DB_PASSWORD=app
+      - APP_DB_NAME=app
+    ports:
+      - 1337:80
+    volumes:
+      - .:/app
+
+  db:
+    image: mysql
+    environment:
+      - MYSQL_DATABASE=app
+      - MYSQL_USER=app
+      - MYSQL_PASSWORD=app
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - "./schema.sql:/docker-entrypoint-initdb.d/0.sql"
