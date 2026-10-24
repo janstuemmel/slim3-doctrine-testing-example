@@ -7,8 +7,24 @@ Testing example for a slim3-doctrine setup with in-memory sqlite database.
 
 ## Requirements
 
-* php >= 5.5
+* PHP >= 8.2.35 for the Docker image
 * sqlite
+
+## PHP2Shell remediation status: blocked
+
+The Docker image now uses the patched `php:8.2.35-apache` base and disables
+`session.upload_progress.enabled`. The application has not yet been verified
+on PHP 8.2, so this change is **not ready to deploy**.
+
+The existing `composer.lock` contains PHP 7-only Doctrine and test packages.
+Composer cannot install this lockfile on PHP 8, and
+`there4/slim-test-helpers` only supports PHPUnit through version 6. Resolve and
+test these dependencies before treating the image as remediated. PHP 7.2 is
+unsupported and is a breaking change for anyone running this container.
+
+After the dependency migration is complete, rebuild the image and redeploy all
+containers; existing containers do not receive the PHP or session-configuration
+changes automatically.
 
 ## Packages
 
